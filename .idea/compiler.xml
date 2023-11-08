@@ -7,10 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Multipantallas_AlvaroRdb" />
+        <module name="Alvaro_RestaurantDB_FinalReal" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Multipantallas_AlvaroRdb" target="20" />
       <module name="SQLrestaurant_DavidRoldan" target="20" />
     </bytecodeTargetLevel>
   </component>
