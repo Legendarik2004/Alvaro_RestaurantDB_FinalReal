@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fce01c5d-2056-4abd-aa06-0db4cdc1643c" name="Changes" comment="Interfaces de servicio, SonarLint arreglado" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2VHzUiwGdMT5A70RyfpecoVfFUd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/alvar/OneDrive/Documentos/2DAM/Acceso a datos/Alvaro_RestaurantDB_Final&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="common.Constants" />
+      <recent name="common.SQLQueries" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="services" />
+      <recent name="model" />
+      <recent name="dao" />
+      <recent name="dao.impl" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="DIJavafx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui.main.DIJavafx" />
+      <module name="Multipantallas_AlvaroRdb" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ui.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.DIJavafx" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fce01c5d-2056-4abd-aa06-0db4cdc1643c" name="Changes" comment="Add y show funcionan" />
+      <created>1694507812506</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694507812506</updated>
+      <workItem from="1694507813612" duration="2029000" />
+      <workItem from="1694602716671" duration="2002000" />
+      <workItem from="1694761218611" duration="1196000" />
+      <workItem from="1695157557125" duration="1487000" />
+      <workItem from="1695193489725" duration="633000" />
+      <workItem from="1695195363704" duration="598000" />
+      <workItem from="1695196258306" duration="46309000" />
+      <workItem from="1695319449769" duration="541000" />
+      <workItem from="1695364403041" duration="337000" />
+      <workItem from="1695365473823" duration="287000" />
+      <workItem from="1695365866086" duration="320000" />
+      <workItem from="1695367203487" duration="25293000" />
+      <workItem from="1695653059348" duration="226000" />
+      <workItem from="1695658123771" duration="502000" />
+      <workItem from="1695796849301" duration="2278000" />
+      <workItem from="1695799262608" duration="52000" />
+      <workItem from="1695801765872" duration="564000" />
+      <workItem from="1695811057307" duration="4373000" />
+      <workItem from="1695883409668" duration="1984000" />
+      <workItem from="1695970051603" duration="17013000" />
+      <workItem from="1696162806126" duration="12857000" />
+      <workItem from="1697446426634" duration="31000" />
+      <workItem from="1697446462592" duration="10652000" />
+      <workItem from="1697465162736" duration="1645000" />
+      <workItem from="1697488943428" duration="4528000" />
+      <workItem from="1697526146277" duration="17289000" />
+      <workItem from="1697552120968" duration="3700000" />
+      <workItem from="1697612206545" duration="2348000" />
+      <workItem from="1697615521860" duration="242000" />
+      <workItem from="1697615779280" duration="12345000" />
+      <workItem from="1697629493691" duration="2290000" />
+      <workItem from="1697666219058" duration="667000" />
+      <workItem from="1697702492615" duration="4892000" />
+      <workItem from="1697785762630" duration="917000" />
+      <workItem from="1698183128932" duration="1311000" />
+      <workItem from="1698216410581" duration="18768000" />
+      <workItem from="1698417852057" duration="1725000" />
+      <workItem from="1698485294667" duration="2270000" />
+      <workItem from="1698597396643" duration="1132000" />
+      <workItem from="1698653296239" duration="599000" />
+      <workItem from="1698752309881" duration="1402000" />
+      <workItem from="1698773393747" duration="5593000" />
+      <workItem from="1698842790575" duration="25577000" />
+      <workItem from="1698911516656" duration="15965000" />
+      <workItem from="1698964047609" duration="8509000" />
+      <workItem from="1699003010309" duration="12391000" />
+      <workItem from="1699343938220" duration="267000" />
+      <workItem from="1699344502008" duration="9273000" />
+      <workItem from="1699435741104" duration="1263000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add y show funcionan">
+      <option name="closed" value="true" />
+      <created>1697788478255</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697788478255</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Entrega JDBC">
+      <option name="closed" value="true" />
+      <created>1698965764331</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698965764331</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Entrega JDBC">
+      <option name="closed" value="true" />
+      <created>1698972497118</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698972497118</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Interfaces de servicio, SonarLint arreglado">
+      <option name="closed" value="true" />
+      <created>1699011194892</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699011194892</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="Add y show funcionan" />
+    <MESSAGE value="Entrega JDBC" />
+    <MESSAGE value="Interfaces de servicio" />
+    <MESSAGE value="Interfaces de servicio, SonarLint arreglado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Interfaces de servicio, SonarLint arreglado" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

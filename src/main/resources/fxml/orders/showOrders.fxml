@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.orders.ShowOrderController">
+    <Label layoutX="417.0" layoutY="14.0" text="Orders">
+        <font>
+            <Font size="22.0" />
+        </font>
+    </Label>
+    <TableView fx:id="ordersTable" layoutX="26.0" layoutY="75.0" prefHeight="257.0" prefWidth="390.0" style="-fx-alignment: center">
+        <columns>
+            <TableColumn fx:id="idOrderColumn" prefWidth="50" style="-fx-alignment: center" text="Id" />
+            <TableColumn fx:id="dateOrderColumn" prefWidth="150" style="-fx-alignment: center" text="Date" />
+            <TableColumn fx:id="customerOrderColumn" prefWidth="95" style="-fx-alignment: center" text="Customer Id" />
+            <TableColumn fx:id="tableOrderColumn" prefWidth="95" style="-fx-alignment: center" text="Table Nr" />
+        </columns>
+    </TableView>
+    <ComboBox fx:id="filterComboBox" layoutX="26.0" layoutY="341.0" onAction="#filter" prefHeight="26.0" prefWidth="160.0" promptText="Filter" />
+    <DatePicker fx:id="dateField" layoutX="265.0" layoutY="341.0" prefHeight="26.0" prefWidth="150.0" promptText="Date" />
+    <ComboBox fx:id="customerOrderComboBox" layoutX="266.0" layoutY="342.0" promptText="Customer" />
+    <Button fx:id="filterButton" layoutX="266.0" layoutY="380.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Filter" />
+    <Label fx:id="customernameLabel" alignment="CENTER" layoutX="598.0" layoutY="75.0" prefHeight="26.0" prefWidth="160.0" text="Customer name">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <Label layoutX="636.0" layoutY="130.0" text="Order Items">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <TableView fx:id="itemsTable" layoutX="575.0" layoutY="167.0" prefHeight="200.0" prefWidth="210.0">
+        <columns>
+            <TableColumn fx:id="nameItemColumn" prefWidth="145" text="Name" />
+            <TableColumn fx:id="quantityItemColumn" prefWidth="65" style="-fx-alignment: center" text="Quantity" />
+        </columns>
+    </TableView>
+    <Label fx:id="priceLabel" alignment="CENTER" layoutX="598.0" layoutY="379.0" prefHeight="26.0" prefWidth="160.0" text="Total amount">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+  </AnchorPane>

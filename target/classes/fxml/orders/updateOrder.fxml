@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.orders.UpdateOrderController">
+    <Label layoutX="182.0" layoutY="14.0" text="Orders">
+        <font>
+            <Font size="22.0" />
+        </font>
+    </Label>
+    <TableView fx:id="ordersTable" layoutX="20.0" layoutY="58.0" prefHeight="331.0" prefWidth="390.0">
+        <columns>
+            <TableColumn fx:id="idOrderColumn" prefWidth="50" text="Id" />
+            <TableColumn fx:id="dateOrderColumn" prefWidth="150" text="Date" />
+            <TableColumn fx:id="customerOrderColumn" prefWidth="95" text="Customer Id" />
+            <TableColumn fx:id="tableOrderColumn" prefWidth="95" text="Table number" />
+        </columns>
+    </TableView>
+    <Label layoutX="646.0" layoutY="198.0" text="Order Items">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <TableView fx:id="itemsTable" layoutX="582.0" layoutY="224.0" prefHeight="200.0" prefWidth="210.0">
+        <columns>
+
+            <TableColumn fx:id="nameItemColumn" prefWidth="145" text="Name" />
+            <TableColumn fx:id="quantityItemColumn" prefWidth="65" text="Quantity" />
+        </columns>
+    </TableView>
+    <Button layoutX="643.0" layoutY="438.0" mnemonicParsing="false" onAction="#updateOrder" text="Update Order" />
+    <DatePicker fx:id="dateField" layoutX="473.0" layoutY="58.0" prefHeight="26.0" prefWidth="150.0" promptText="Date" />
+    <TextField fx:id="tableOrderField" layoutX="473.0" layoutY="93.0" promptText="Table number" />
+    <TextField fx:id="customerOrderField" layoutX="473.0" layoutY="131.0" promptText="Customer" />
+    <ComboBox fx:id="itemsComboBox" layoutX="688.0" layoutY="58.0" prefHeight="26.0" prefWidth="150.0" promptText="Menu items" />
+    <TextField fx:id="quantityItemField" layoutX="688.0" layoutY="93.0" promptText="Quantity" />
+    <Button layoutX="799.0" layoutY="131.0" mnemonicParsing="false" onAction="#addItem" text="Add" />
+    <Button layoutX="688.0" layoutY="131.0" mnemonicParsing="false" onAction="#removeItem" text="Remove" />
+
+</AnchorPane>

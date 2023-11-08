@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.orders.AddOrderController">
+    <Label layoutX="400.0" layoutY="14.0" text="Add order">
+        <font>
+            <Font size="22.0" />
+        </font>
+    </Label>
+    <Label layoutX="596.0" layoutY="60.0" text="Order Items">
+        <font>
+            <Font size="16.0" />
+        </font>
+    </Label>
+    <TableView fx:id="itemsTable" layoutX="508.0" layoutY="99.0" prefHeight="300.0" prefWidth="262.0">
+        <columns>
+            <TableColumn fx:id="idItemColumn" prefWidth="50" style="-fx-alignment: center" text="Id" />
+            <TableColumn fx:id="menuItemColumn" prefWidth="145" text="Name" />
+            <TableColumn fx:id="quantityItemColumn" prefWidth="65" style="-fx-alignment: center" text="Quantity" />
+        </columns>
+    </TableView>
+    <Button layoutX="414.0" layoutY="443.0" mnemonicParsing="false" onAction="#addOrder" text="Add Order" />
+    <TextField fx:id="tableOrderField" layoutX="66.0" layoutY="86.0" promptText="Table number" />
+    <ComboBox fx:id="itemsComboBox" layoutX="65.0" layoutY="209.0" prefHeight="26.0" prefWidth="150.0" promptText="Menu items" />
+    <TextField fx:id="quantityItemField" layoutX="233.0" layoutY="209.0" promptText="Quantity" />
+    <Button layoutX="66.0" layoutY="283.0" mnemonicParsing="false" onAction="#addItem" text="Add" />
+    <Button layoutX="140.0" layoutY="283.0" mnemonicParsing="false" onAction="#removeItem" text="Remove" />
+</AnchorPane>

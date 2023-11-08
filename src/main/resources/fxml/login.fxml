@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<BorderPane fx:id="loginPane" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.login.LoginController">
+    <Label layoutX="338.0" layoutY="47.0" text="Restaurant">
+        <font>
+            <Font name="DejaVu Sans Condensed Bold" size="41.0"/>
+        </font>
+    </Label>
+    <center>
+        <StackPane prefHeight="150.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="background" BorderPane.alignment="CENTER">
+                <children>
+                    <TextField fx:id="userTextField" layoutX="375.0" layoutY="150.0" promptText="User"/>
+                    <PasswordField fx:id="passTextField" layoutX="375.0" layoutY="187.0" promptText="Password"/>
+                    <Button fx:id="button" layoutX="427.0" layoutY="261.0" mnemonicParsing="false" onAction="#doLogin"
+                            text="Login">
+                        <font>
+                            <Font name="Alef Regular" size="12.0"/>
+                        </font>
+                    </Button>
+                    <StackPane prefHeight="150.0" prefWidth="200.0"/>
+                    <Label layoutX="358.0" layoutY="75.0" prefHeight="42.0" prefWidth="183.0" text="Restaurant">
+                        <font>
+                            <Font name="Arial" size="36.0"/>
+                        </font>
+                    </Label>
+                </children>
+            </AnchorPane>
+        </StackPane>
+    </center>
+</BorderPane>

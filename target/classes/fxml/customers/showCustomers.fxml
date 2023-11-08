@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.screens.customers.ShowCustomersController">
+    <Label layoutX="255.0" layoutY="14.0" text="Customers">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Label>
+    <TableView fx:id="customersTable" layoutX="20.0" layoutY="60.0" prefHeight="335.0" prefWidth="583.0" style="-fx-alignment: center">
+        <columns>
+            <TableColumn fx:id="idCustomerColumn" prefWidth="45.0" style="-fx-alignment: center" text="Id" />
+            <TableColumn fx:id="firstnameCustomerColumn" prefWidth="81.0" style="-fx-alignment: center" text="First name" />
+            <TableColumn fx:id="lastnameCustomerColumn" prefWidth="90.0" style="-fx-alignment: center" text="Last name" />
+            <TableColumn fx:id="emailCustomerColumn" prefWidth="174.0" style="-fx-alignment: center" text="Email" />
+            <TableColumn fx:id="phoneCustomerColumn" prefWidth="95.0" style="-fx-alignment: center" text="Phone" />
+            <TableColumn fx:id="dobCustomerColumn" prefWidth="95.0" style="-fx-alignment: center" text="Date of birth" />
+        </columns>
+    </TableView>
+
+
+</AnchorPane>
