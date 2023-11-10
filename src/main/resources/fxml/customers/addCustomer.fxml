@@ -22,7 +22,6 @@
     </TableView>
     <TextField fx:id="userNameField" layoutX="655.0" layoutY="60.0" promptText="Username" />
     <TextField fx:id="passwordField" layoutX="655.0" layoutY="100.0" promptText="Password" />
-
     <TextField fx:id="fnameField" layoutX="655.0" layoutY="140.0" promptText="First name" />
     <TextField fx:id="lnameField" layoutX="655.0" layoutY="180.0" promptText="Last name" />
     <TextField fx:id="emailField" layoutX="655.0" layoutY="220.0" promptText="Email" />

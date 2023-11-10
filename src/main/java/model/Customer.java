@@ -14,7 +14,7 @@ public class Customer {
     private String email;
     private String phone;
     private LocalDate dob;
-
+    private Credentials credentials;
 
     public String toStringSimplified() {
         return id + " " + firstName + " " + lastName.charAt(0);

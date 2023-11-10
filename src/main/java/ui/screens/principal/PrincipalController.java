@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import lombok.Data;
 import lombok.extern.log4j.Log4j2;
-import model.User;
+import model.Credentials;
 import ui.screens.common.BaseScreenController;
 import ui.screens.common.Screens;
 
@@ -23,7 +23,7 @@ import java.io.IOException;
 @Log4j2
 public class PrincipalController {
     private Alert alert;
-    private User actualUser;
+    private Credentials actualCredentials;
     @FXML
     public BorderPane root;
     Instance<Object> instance;
@@ -79,12 +79,12 @@ public class PrincipalController {
         alert.showAndWait();
     }
 
-    public void onLoginDone(User user) {
-        actualUser = user;
+    public void onLoginDone(Credentials credentials) {
+        actualCredentials = credentials;
         menuPrincipal.setVisible(true);
         cargarPantalla(Screens.WELCOME);
 
-        if (actualUser.getId() < 0) {
+        if (actualCredentials.getId() < 0) {
             menuCustomers.setVisible(true);
             addOrder.setVisible(false);
             deleteOrder.setVisible(true);
@@ -97,7 +97,7 @@ public class PrincipalController {
 
 
     public void logout() {
-        actualUser = null;
+        actualCredentials = null;
         menuPrincipal.setVisible(false);
         cargarPantalla(Screens.LOGIN);
     }

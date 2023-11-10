@@ -1,11 +1,11 @@
 package services;
 
 import io.vavr.control.Either;
-import model.User;
+import model.Credentials;
 import model.errors.Error;
 
 public interface LoginService {
-    Either<Error,Boolean> doLogin(User user);
+    Either<Error,Boolean> doLogin(Credentials credentials);
 
-    User get();
+    Credentials get();
 }

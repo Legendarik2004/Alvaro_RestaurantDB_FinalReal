@@ -15,15 +15,14 @@
             <Font size="16.0" />
         </font>
     </Label>
-    <TableView fx:id="itemsTable" layoutX="508.0" layoutY="99.0" prefHeight="300.0" prefWidth="262.0">
+    <TableView fx:id="itemsTable" layoutX="508.0" layoutY="99.0" prefHeight="300.0" prefWidth="212.0">
         <columns>
-            <TableColumn fx:id="idItemColumn" prefWidth="50" style="-fx-alignment: center" text="Id" />
             <TableColumn fx:id="menuItemColumn" prefWidth="145" text="Name" />
             <TableColumn fx:id="quantityItemColumn" prefWidth="65" style="-fx-alignment: center" text="Quantity" />
         </columns>
     </TableView>
     <Button layoutX="414.0" layoutY="443.0" mnemonicParsing="false" onAction="#addOrder" text="Add Order" />
-    <TextField fx:id="tableOrderField" layoutX="66.0" layoutY="86.0" promptText="Table number" />
+    <ComboBox fx:id="tableComboBox" layoutX="65.0" layoutY="90.0" prefHeight="26.0" prefWidth="150.0" promptText="Table Number" />
     <ComboBox fx:id="itemsComboBox" layoutX="65.0" layoutY="209.0" prefHeight="26.0" prefWidth="150.0" promptText="Menu items" />
     <TextField fx:id="quantityItemField" layoutX="233.0" layoutY="209.0" promptText="Quantity" />
     <Button layoutX="66.0" layoutY="283.0" mnemonicParsing="false" onAction="#addItem" text="Add" />

@@ -3,6 +3,7 @@ package ui.screens.customers;
 import common.Constants;
 import jakarta.inject.Inject;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -20,7 +21,6 @@ import java.security.Timestamp;
 import java.time.LocalDate;
 
 public class DeleteCustomerController extends BaseScreenController {
-    public static final String SEGURO_QUE_QUIERES_ELIMINAR = "¿Seguro que quieres eliminar?";
     private final CustomerService customerService;
     private final OrderService orderService;
     private final OrderItemService orderItemService;
@@ -101,15 +101,17 @@ public class DeleteCustomerController extends BaseScreenController {
     }
 
     public void deleteCustomerOrder() {
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+        a.setContentText(Constants.SEGURO_QUE_QUIERES_ELIMINAR);
+        a.getDialogPane().lookupButton(ButtonType.OK).setId("btn-ok");
         if (selectedCustomer == null) {
             getPrincipalController().showErrorAlert(Constants.SELECT_CUSTOMER_FIRST);
         } else {
             if (!ordersTable.getItems().isEmpty()) {
-                getPrincipalController().showConfirmationAlert(SEGURO_QUE_QUIERES_ELIMINAR);
-                getPrincipalController().getAlert().showAndWait().ifPresent(response -> {
+                a.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         orderService.getOrderOfCustomer(selectedCustomer.getId()).peek(orders -> orders.forEach(
-                                order -> orderItemService.getAllOrderItems(order.getOrderId())
+                                order -> orderItemService.getAll(order.getOrderId())
                                         .peek(orderItemsList -> {
                                             orderItemsList.forEach(orderItemService::delete);
                                             orderService.delete(order).peek(orderDeleted -> {

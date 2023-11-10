@@ -7,7 +7,7 @@ import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
 import model.Customer;
-import model.User;
+import model.Credentials;
 import model.errors.Error;
 
 import java.sql.*;
@@ -55,7 +55,8 @@ public class CustomerDaoImpl implements CustomersDAO {
                         rs.getString(Constants.LAST_NAME),
                         rs.getString(Constants.EMAIL),
                         rs.getString(Constants.PHONE),
-                        rs.getDate(Constants.DATE_OF_BIRTH).toLocalDate()
+                        rs.getDate(Constants.DATE_OF_BIRTH).toLocalDate(),
+                        new Credentials(0,null,null)
                 );
                 customers.add(resultCustomer);
             }
@@ -87,14 +88,14 @@ public class CustomerDaoImpl implements CustomersDAO {
     }
 
     @Override
-    public Either<Error, Integer> save(Customer customer, User user) {
+    public Either<Error, Integer> save(Customer customer) {
         Either<Error, Integer> result;
 
         try (Connection myConnection = db.getConnection();
              PreparedStatement preparedStatementCredentials = myConnection.prepareStatement(SQLQueries.ADD_CREDENTIALS, Statement.RETURN_GENERATED_KEYS)) {
 
-            preparedStatementCredentials.setString(1, user.getNombre());
-            preparedStatementCredentials.setString(2, user.getPassword());
+            preparedStatementCredentials.setString(1, customer.getCredentials().getNombre());
+            preparedStatementCredentials.setString(2, customer.getCredentials().getPassword());
 
             int credentialsAdded = preparedStatementCredentials.executeUpdate();
             if (credentialsAdded == 0) {

@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import model.MenuItem;
 import model.Order;
 import model.OrderItem;
-import model.User;
+import model.Credentials;
 import services.OrderItemService;
 import services.OrderService;
 import ui.screens.common.BaseScreenController;
@@ -18,6 +18,7 @@ import ui.screens.common.BaseScreenController;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.List;
 
 public class UpdateOrderController extends BaseScreenController {
 
@@ -52,7 +53,7 @@ public class UpdateOrderController extends BaseScreenController {
     public ComboBox<String> itemsComboBox;
     private Order selectedOrder;
     private OrderItem selectedOrderItem;
-    private User actualUser;
+    private Credentials actualCredentials;
 
     @Inject
     public UpdateOrderController(OrderService orderService, OrderItemService orderItemService) {
@@ -102,18 +103,18 @@ public class UpdateOrderController extends BaseScreenController {
 
     @Override
     public void principalCargado() throws IOException {
-        actualUser = getPrincipalController().getActualUser();
+        actualCredentials = getPrincipalController().getActualCredentials();
         setTables();
     }
 
     private void setTables() {
         ordersTable.getItems().clear();
-        if (actualUser.getId() < 0) {
+        if (actualCredentials.getId() < 0) {
             orderService.getAll().peek(orders -> ordersTable.getItems().addAll(orders))
                     .peekLeft(orderError -> getPrincipalController().showErrorAlert(orderError.getMessage()));
 
         } else {
-            orderService.getOrderOfCustomer(actualUser.getId()).peek(orders -> ordersTable.getItems().addAll(orders))
+            orderService.getOrderOfCustomer(actualCredentials.getId()).peek(orders -> ordersTable.getItems().addAll(orders))
                     .peekLeft(orderError -> getPrincipalController().showErrorAlert(orderError.getMessage()));
         }
         itemsTable.getItems().clear();
@@ -122,7 +123,7 @@ public class UpdateOrderController extends BaseScreenController {
 
     private void setOrderItemTable() {
         if (selectedOrder != null) {
-            orderItemService.getAllOrderItems(selectedOrder.getOrderId())
+            orderItemService.getAll(selectedOrder.getOrderId())
                     .peek(orderItems -> itemsTable.getItems().setAll(orderItems))
                     .peekLeft(noItems -> itemsTable.getItems().clear());
             itemsComboBox.setDisable(false);
@@ -135,10 +136,11 @@ public class UpdateOrderController extends BaseScreenController {
         if (tableOrderField.getText().isEmpty()) {
             getPrincipalController().showErrorAlert(Constants.EMPTY_FIELD);
         } else {
-            orderService.update(new Order(selectedOrder.getOrderId(), Timestamp.from(Instant.now()), 0, Integer.parseInt(tableOrderField.getText()))).peek(success -> {
+            List<OrderItem> orderItems = itemsTable.getItems().stream().toList();
+            orderService.update(new Order(selectedOrder.getOrderId(), Timestamp.from(Instant.now()), 0, Integer.parseInt(tableOrderField.getText()),orderItems)).peek(success -> {
                         if (success == 0) {
 
-                            orderItemService.getAllOrderItems(selectedOrder.getOrderId())
+                            orderItemService.getAll(selectedOrder.getOrderId())
                                     .peek(orderItemsList -> orderItemsList.forEach(orderItemService::delete))
                                     .peekLeft(noItems -> itemsTable.getItems().clear());
 
@@ -167,7 +169,7 @@ public class UpdateOrderController extends BaseScreenController {
                         .filter(menuItem -> menuItem.getName().equals(itemsComboBox.getValue()))
                         .findFirst().orElse(null);
                 if (add != null) {
-                    itemsTable.getItems().add(new OrderItem(0, selectedOrder.getOrderId(), add.getMenuItemId(), Integer.parseInt(quantityItemField.getText()), add));
+                    itemsTable.getItems().add(new OrderItem(0, selectedOrder.getOrderId(), Integer.parseInt(quantityItemField.getText()), add));
                     quantityItemField.clear();
                     getPrincipalController().showConfirmationAlert(Constants.ITEM_ADDED_SUCCESSFULLY);
                 } else {

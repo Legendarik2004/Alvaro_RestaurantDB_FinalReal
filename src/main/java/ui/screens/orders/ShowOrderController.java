@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import model.Customer;
 import model.Order;
 import model.OrderItem;
-import model.User;
+import model.Credentials;
 import services.CustomerService;
 import services.OrderItemService;
 import services.OrderService;
@@ -48,12 +48,14 @@ public class ShowOrderController extends BaseScreenController {
     @FXML
     public Button filterButton;
     @FXML
-    public Label customernameLabel;
+    public Label customerNameLabel;
     @FXML
     public TableView<OrderItem> itemsTable;
+    @FXML
+    public Label priceLabel;
 
     private Order selectedOrder;
-    private User actualUser;
+    private Credentials actualCredentials;
 
 
     @Inject
@@ -92,14 +94,14 @@ public class ShowOrderController extends BaseScreenController {
 
     @Override
     public void principalCargado() throws IOException {
-        actualUser = getPrincipalController().getActualUser();
+        actualCredentials = getPrincipalController().getActualCredentials();
 
-        if (actualUser.getId() < 0) {
-            filterComboBox.getItems().addAll("Default", "Date", "Customer");
-            customernameLabel.setVisible(true);
+        filterComboBox.getItems().addAll("Default", "Date");
+        if (actualCredentials.getId() < 0) {
+            filterComboBox.getItems().add("Customer");
+            customerNameLabel.setVisible(true);
         } else {
-            filterComboBox.getItems().addAll("Default", "Date");
-            customernameLabel.setVisible(false);
+            customerNameLabel.setVisible(false);
         }
         setOrderTable();
     }
@@ -107,12 +109,12 @@ public class ShowOrderController extends BaseScreenController {
     private void setOrderTable() {
         ordersTable.getItems().clear();
 
-        if (actualUser.getId() < 0) {
+        if (actualCredentials.getId() < 0) {
             orderService.getAll().peek(orders -> ordersTable.getItems().addAll(orders))
                     .peekLeft(orderError -> getPrincipalController().showErrorAlert(orderError.getMessage()));
 
         } else {
-            orderService.getOrderOfCustomer(actualUser.getId()).peek(orders -> ordersTable.getItems().addAll(orders))
+            orderService.getOrderOfCustomer(actualCredentials.getId()).peek(orders -> ordersTable.getItems().addAll(orders))
                     .peekLeft(orderError -> getPrincipalController().showErrorAlert(orderError.getMessage()));
         }
     }
@@ -120,12 +122,17 @@ public class ShowOrderController extends BaseScreenController {
 
     private void setOrderItemTable() {
         if (selectedOrder != null) {
-            orderItemService.getAllOrderItems(selectedOrder.getOrderId())
+
+            orderItemService.getAll(selectedOrder.getOrderId())
                     .peek(orderItems -> itemsTable.getItems().setAll(orderItems))
                     .peekLeft(noItems -> itemsTable.getItems().clear());
             customerService.getCustomerById(selectedOrder.getCustomerId())
-                    .peek(customer -> customernameLabel.setText(customer.toStringSimplified()))
-                    .peekLeft(noCustomer -> customernameLabel.setText(noCustomer.getMessage()));
+                    .peek(customer -> customerNameLabel.setText(customer.toStringSimplified()))
+                    .peekLeft(noCustomer -> customerNameLabel.setText(noCustomer.getMessage()));
+            selectedOrder.setOrderItems(itemsTable.getItems());
+            orderService.getTotalPrice(selectedOrder)
+                    .peek(totalPrice -> priceLabel.setText((totalPrice + "€")))
+                    .peekLeft(noTotalPrice -> priceLabel.setText(noTotalPrice.getMessage()));
         } else {
             itemsTable.getItems().clear();
         }
@@ -177,6 +184,8 @@ public class ShowOrderController extends BaseScreenController {
             });
         } else {
             itemsTable.getItems().clear();
+            dateField.setVisible(false);
+            filterButton.setVisible(false);
             setOrderTable();
         }
     }

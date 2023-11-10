@@ -4,7 +4,6 @@ import dao.CustomersDAO;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import model.Customer;
-import model.User;
 import model.errors.Error;
 import services.CustomerService;
 
@@ -30,8 +29,8 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Either<Error, Integer> save(Customer c, User user){
-        return dao.save(c, user);
+    public Either<Error, Integer> save(Customer c){
+        return dao.save(c);
     }
 
     @Override

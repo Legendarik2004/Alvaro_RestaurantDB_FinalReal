@@ -31,4 +31,7 @@ public class SQLQueries {
 
     //MENUITEMS
     public static final String GETALL_MENUITEMS = "SELECT * FROM menu_items";
+
+    //TABLES
+    public static final String GETALL_TABLES = "SELECT * FROM restaurant_tables";
 }

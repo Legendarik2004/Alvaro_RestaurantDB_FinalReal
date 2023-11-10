@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Customer;
-import model.User;
+import model.Credentials;
 import services.CustomerService;
 import ui.screens.common.BaseScreenController;
 
@@ -71,11 +71,11 @@ public class AddCustomerController extends BaseScreenController {
     }
 
     public void addCustomer() {
-        if (fnameField.getText().isEmpty() || lnameField.getText().isEmpty() || emailField.getText().isEmpty() || phoneField.getText().isEmpty() || dobField.getValue() == null) {
+        if (fnameField.getText().isEmpty() || lnameField.getText().isEmpty() || emailField.getText().isEmpty() || phoneField.getText().isEmpty() || dobField.getValue() == null || userNameField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             getPrincipalController().showErrorAlert(Constants.EMPTY_FIELD);
         } else {
 
-            customerService.save(new Customer(0, fnameField.getText(), lnameField.getText(), emailField.getText(), phoneField.getText(), dobField.getValue()),new User(0,userNameField.getText(),passwordField.getText())).peek(success -> {
+            customerService.save(new Customer(0, fnameField.getText(), lnameField.getText(), emailField.getText(), phoneField.getText(), dobField.getValue(),new Credentials(0,userNameField.getText(),passwordField.getText()))).peek(success -> {
                         if (success == 0) {
 
                             setTable();

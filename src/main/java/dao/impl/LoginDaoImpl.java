@@ -6,7 +6,7 @@ import dao.LoginDAO;
 import io.vavr.control.Either;
 import jakarta.inject.Inject;
 import lombok.extern.log4j.Log4j2;
-import model.User;
+import model.Credentials;
 import model.errors.Error;
 
 import java.sql.Connection;
@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 @Log4j2
 public class LoginDaoImpl implements LoginDAO {
     private final DBConnectionPool db;
-    private User newUser;
+    private Credentials newCredentials;
 
     @Inject
     public LoginDaoImpl(DBConnectionPool db) {
@@ -27,16 +27,16 @@ public class LoginDaoImpl implements LoginDAO {
     }
 
     @Override
-    public Either<Error, Boolean> doLogin(User user) {
+    public Either<Error, Boolean> doLogin(Credentials credentials) {
         Either<Error, Boolean> result;
 
         try (Connection myConnection = db.getConnection();
              PreparedStatement preparedStatement = myConnection.prepareStatement(SQLQueries.CHECK_CREDENTIALS)) {
-            preparedStatement.setString(1, user.getNombre());
+            preparedStatement.setString(1, credentials.getNombre());
 
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
-                    newUser = new User(
+                    newCredentials = new Credentials(
                             rs.getInt(Constants.ID),
                             rs.getString(Constants.USER_NAME),
                             rs.getString(Constants.PASSWORD)
@@ -54,8 +54,8 @@ public class LoginDaoImpl implements LoginDAO {
     }
 
     @Override
-    public User get() {
-        return newUser;
+    public Credentials get() {
+        return newCredentials;
     }
 
 }

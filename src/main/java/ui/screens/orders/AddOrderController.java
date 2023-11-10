@@ -4,15 +4,20 @@ import common.Constants;
 import jakarta.inject.Inject;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import model.Credentials;
 import model.MenuItem;
 import model.Order;
 import model.OrderItem;
-import model.User;
+import model.Table;
 import services.OrderItemService;
 import services.OrderService;
+import services.TablesService;
 import ui.screens.common.BaseScreenController;
 
 import java.io.IOException;
@@ -28,33 +33,32 @@ public class AddOrderController extends BaseScreenController {
     @FXML
     public TableView<OrderItem> itemsTable;
     @FXML
-    public TableColumn<Integer, OrderItem> idItemColumn;
-    @FXML
     public TableColumn<OrderItem, String> menuItemColumn;
     @FXML
     public TableColumn<Integer, OrderItem> quantityItemColumn;
     @FXML
-    public TextField tableOrderField;
-    @FXML
     public ComboBox<String> itemsComboBox;
     @FXML
     public TextField quantityItemField;
+    @FXML
+    public ComboBox<Integer> tableComboBox;
     private OrderItem selectedOrderItem;
-    private User actualUser;
+    private Credentials actualCredentials;
+    private TablesService tablesService;
 
     @Inject
-    public AddOrderController(OrderService orderService, OrderItemService orderItemService) {
+    public AddOrderController(OrderService orderService, OrderItemService orderItemService, TablesService tablesService) {
         this.orderService = orderService;
         this.orderItemService = orderItemService;
-
+        this.tablesService = tablesService;
     }
 
     public void initialize() {
-        idItemColumn.setCellValueFactory(new PropertyValueFactory<>("menuItemId"));
         menuItemColumn.setCellValueFactory((cellData -> new SimpleStringProperty(cellData.getValue().getMenuItem().getName())));
         quantityItemColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         itemsTable.setOnMouseClicked(this::handleTableClick);
 
+        tableComboBox.getItems().addAll(tablesService.getAll().get().stream().map(Table::getTableId).toList());
         itemsComboBox.getItems().addAll(orderItemService.getAllMenuItems().get().stream().map(MenuItem::getName).toList());
     }
 
@@ -69,7 +73,7 @@ public class AddOrderController extends BaseScreenController {
 
     @Override
     public void principalCargado() throws IOException {
-        actualUser = getPrincipalController().getActualUser();
+        actualCredentials = getPrincipalController().getActualCredentials();
         setTable();
     }
 
@@ -77,23 +81,17 @@ public class AddOrderController extends BaseScreenController {
         itemsTable.getItems().clear();
     }
 
+    @FXML
     public void addOrder() {
-
-        if (tableOrderField.getText().isEmpty()) {
+        if (tableComboBox.getValue() == null || itemsTable.getItems().isEmpty()) {
             getPrincipalController().showErrorAlert(Constants.EMPTY_FIELD);
         } else {
-            orderService.save(new Order(0, Timestamp.from(Instant.now()), actualUser.getId(), Integer.parseInt(tableOrderField.getText()))).peek(success -> {
+            List<OrderItem> orderItemList = itemsTable.getItems().stream().toList();
+            orderService.save(new Order(0, Timestamp.from(Instant.now()), actualCredentials.getId(), tableComboBox.getValue(), orderItemList)).peek(success -> {
 
                         if (success == 0) {
-                            int id = orderService.getAddedOrderId();
-                            List<OrderItem> orderItemList = itemsTable.getItems().stream().toList();
-                            for (OrderItem orderItem : orderItemList) {
-                                orderItem.setOrderId(id);
-                                orderItemService.save(orderItem);
-                            }
                             setTable();
                             getPrincipalController().showConfirmationAlert(Constants.ORDER_ADDED_SUCCESSFULLY);
-
                         }
                     })
                     .peekLeft(customerError -> getPrincipalController().showErrorAlert(Constants.ERROR_ADDING_ORDER));
@@ -109,7 +107,7 @@ public class AddOrderController extends BaseScreenController {
                     .filter(menuItem -> menuItem.getName().equals(itemsComboBox.getValue()))
                     .findFirst().orElse(null);
             if (add != null) {
-                itemsTable.getItems().add(new OrderItem(0, 0, add.getMenuItemId(), Integer.parseInt(quantityItemField.getText()), add));
+                itemsTable.getItems().add(new OrderItem(0, 0, Integer.parseInt(quantityItemField.getText()), add));
                 quantityItemField.clear();
                 getPrincipalController().showConfirmationAlert(Constants.ITEM_ADDED_SUCCESSFULLY);
             } else {

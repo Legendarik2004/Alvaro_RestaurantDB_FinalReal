@@ -5,7 +5,7 @@ import jakarta.inject.Inject;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import model.User;
+import model.Credentials;
 import services.LoginService;
 import ui.screens.common.BaseScreenController;
 
@@ -25,9 +25,9 @@ public class LoginController extends BaseScreenController {
 
     @FXML
     private void doLogin() {
-        User user = new User(0, userTextField.getText(), passTextField.getText());
+        Credentials credentials = new Credentials(0, userTextField.getText(), passTextField.getText());
 
-        loginService.doLogin(user).peek(success -> {
+        loginService.doLogin(credentials).peek(success -> {
                     if (Boolean.TRUE.equals(success)) {
                         getPrincipalController().onLoginDone(loginService.get());
                     } else {

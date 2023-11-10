@@ -29,6 +29,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Either<Error, Double> getTotalPrice(Order order) {
+        return dao.getTotalPrice(order);
+    }
+
+    @Override
     public Either<Error, Integer> save(Order o) {
         return dao.save(o);
     }

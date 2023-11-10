@@ -11,6 +11,8 @@ public interface OrderService {
 
     Either<Error, List<Order>> getOrderOfCustomer(int id);
 
+    Either<Error, Double> getTotalPrice(Order order);
+
     Either<Error, Integer> save(Order o);
 
     Either<Error, Integer> update(Order o);

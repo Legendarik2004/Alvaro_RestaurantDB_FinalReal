@@ -85,7 +85,7 @@ public class DeleteOrderController extends BaseScreenController {
 
     private void setOrderItemTable() {
         if (selectedOrder != null) {
-            orderItemService.getAllOrderItems(selectedOrder.getOrderId())
+            orderItemService.getAll(selectedOrder.getOrderId())
                     .peek(orderItems -> itemsTable.getItems().setAll(orderItems))
                     .peekLeft(noItems -> itemsTable.getItems().clear());
         } else {
@@ -93,17 +93,19 @@ public class DeleteOrderController extends BaseScreenController {
         }
     }
 
+    @FXML
     public void deleteOrder() {
         if (selectedOrder == null) {
             getPrincipalController().showErrorAlert(Constants.SELECT_ORDER_FIRST);
         } else {
 
-            orderItemService.getAllOrderItems(selectedOrder.getOrderId())
+            orderItemService.getAll(selectedOrder.getOrderId())
                     .peek(orderItemsList -> orderItemsList.forEach(orderItemService::delete))
                     .peekLeft(noItems -> itemsTable.getItems().clear());
 
             orderService.delete(selectedOrder).peek(success -> {
                         if (success == 0) {
+                            setOrderItemTable();
                             setOrderTable();
                             getPrincipalController().showConfirmationAlert(Constants.ORDER_DELETED_SUCCESSFULLY);
                         }

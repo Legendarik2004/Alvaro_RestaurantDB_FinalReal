@@ -23,24 +23,17 @@ public class OrderItemsServiceImpl implements OrderItemService {
     }
 
     @Override
-    public Either<Error, List<OrderItem>> getAllOrderItems(int id) {
-        return dao.getAllOrderItems(id);
+    public Either<Error, List<OrderItem>> getAll(int id) {
+        return dao.getAll(id);
     }
 
-    @Override
-    public Either<Error, List<OrderItem>> get(int id) {
-        return dao.get(id);
-    }
+
 
     @Override
     public Either<Error, Integer> save(OrderItem orderItem) {
         return dao.save(orderItem);
     }
 
-    @Override
-    public Either<Error, Integer> update(OrderItem orderItem) {
-        return dao.update(orderItem);
-    }
 
     @Override
     public Either<Error, Integer> delete(OrderItem orderItem) {

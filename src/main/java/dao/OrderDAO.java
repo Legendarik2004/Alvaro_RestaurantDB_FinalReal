@@ -11,6 +11,8 @@ public interface OrderDAO {
 
     Either<Error, List<Order>> getOrderOfCustomer(int id);
 
+    Either<Error, Double> getTotalPrice(Order order);
+
     Either<Error, Integer> save(Order order);
 
     Either<Error, Integer> update(Order order);
